@@ -1,0 +1,4 @@
+node_modules/
+portflio-backend/node_modules
+portflio-backend/node_modules/
+portflio_backend/ .env

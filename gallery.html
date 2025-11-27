@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Memories Gallery | Vijay Anand</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== Header ===== */
+    .gallery-header {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .gallery-header h2 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gallery-header p {
+      color: #bbb;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 40px;
+      padding: 10px 20px;
+      background: #0078ff;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #0056b3;
+    }
+
+    /* ===== Gallery Grid ===== */
+    .gallery-grid {
+      margin-top: 30px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-item:hover {
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0.95rem;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+
+    /* ===== Modal (Lightbox) ===== */
+    .modal-content {
+      background-color: #000;
+      border: none;
+    }
+
+    .modal-body img {
+      width: 100%;
+      height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .modal-footer {
+      justify-content: space-between;
+      border-top: none;
+    }
+
+    .modal-footer p {
+      color: #ccc;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item img {
+        height: 200px;
+      }
+
+      .modal-body img {
+        height: 60vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="gallery-header">
+      <h2>College Memories Gallery</h2>
+      <p>Snapshots of laughter, friendship, and unforgettable moments throughout my college journey.</p>
+      <a href="index.html#blog" class="back-btn">← Back to Memories</a>
+    </div>
+
+    <!-- ===== Gallery Grid ===== -->
+    <div class="row gallery-grid">
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="0">
+        <img src="img/friends/f1.webp" alt="Farewell Party" />
+        <div class="gallery-caption">Farewell Celebration</div>
+      </div>
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="1">
+        <img src="img/friends/f2.webp" alt="Sports Meet" />
+        <div class="gallery-caption">Sports Meet Victory</div>
+      </div>
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="2">
+        <img src="img/friends/f3.webp" alt="Cultural Event" />
+        <div class="gallery-caption">Cultural Day Performance</div>
+      </div>
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="3">
+        <img src="img/friends/f4.webp" alt="Project Day" />
+        <div class="gallery-caption">Project Presentation</div>
+      </div>
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="4">
+        <img src="img/friends/f5.webp" alt="Canteen Moments" />
+        <div class="gallery-caption">Canteen Fun</div>
+      </div>
+      <div class="col-md-4 col-sm-6 gallery-item" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-index="5">
+        <img src="img/friends/f6.webp" alt="Lab Work" />
+        <div class="gallery-caption">Lab Collaboration</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal Lightbox ===== -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img id="lightboxImage" src="" alt="Gallery Image" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light" id="prevBtn">⟨ Prev</button>
+          <p id="lightboxCaption" class="text-center flex-grow-1"></p>
+          <button class="btn btn-outline-light" id="nextBtn">Next ⟩</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JS (Bootstrap + Lightbox Script) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const images = [
+      { src: "img/friends/f1.webp", caption: "Farewell Celebration" },
+      { src: "img/friends/f2.webp", caption: "Sports Meet Victory" },
+      { src: "img/friends/f3.webp", caption: "Cultural Day Performance" },
+      { src: "img/friends/f4.webp", caption: "Project Presentation" },
+      { src: "img/friends/f5.webp", caption: "Canteen Fun" },
+      { src: "img/friends/f6.webp", caption: "Lab Collaboration" },
+    ];
+
+    let currentIndex = 0;
+
+    galleryItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        currentIndex = parseInt(item.getAttribute("data-index"));
+        updateLightbox();
+      });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateLightbox();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateLightbox();
+    });
+
+    function updateLightbox() {
+      const { src, caption } = images[currentIndex];
+      lightboxImage.src = src;
+      lightboxCaption.textContent = caption;
+    }
+
+    // Reset on modal close
+    document.getElementById("lightboxModal").addEventListener("hidden.bs.modal", () => {
+      lightboxImage.src = "";
+    });
+  </script>
+</body>
+</html>

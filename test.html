@@ -1,0 +1,189 @@
+<?php
+// resume.php — Vijay Anand Portfolio Resume Page
+// Make sure your PDF is in the same folder or correct the path below
+$pdf_file = "White and Black  Modern New Graduate Professional Resume.pdf";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijay Anand | Resume</title>
+
+  <style>
+    /* ===== BODY & BACKGROUND ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #f1f5f9;
+      overflow-x: hidden;
+
+      /* ===== ADD YOUR BACKGROUND IMAGE HERE ===== */
+      /* Replace 'img/bg.jpg' with your actual background image path */
+      background: url('img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      /* =========================================== */
+
+      backdrop-filter: blur(8px);
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .resume-container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: rgba(0, 0, 0, 0.6); /* Transparent overlay */
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* ===== DOWNLOAD BUTTON ===== */
+    .download-btn {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: #38bdf8;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background: #0ea5e9;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      color: #38bdf8;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 5px;
+    }
+    p {
+      line-height: 1.7;
+      margin: 8px 0;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .resume-container {
+        padding: 25px 20px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="resume-container">
+    <a href="<?php echo $pdf_file; ?>" class="download-btn" download>⬇ Download Resume</a>
+
+    <header>
+      <h1>Vijay Anand</h1>
+      <p><strong>Web Developer | Computer Science Engineer</strong></p>
+      <p>Madagadipet, Puducherry - 605107</p>
+      <p>
+        <a href="mailto:avijayanand986@gmail.com">avijayanand986@gmail.com</a> |
+        <a href="https://www.linkedin.com/in/vijayanand018" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/vijayanand-stark" target="_blank">GitHub</a>
+      </p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>
+        Motivated and detail-oriented Computer Science Engineer with a strong foundation in web
+        development, software design, and data analytics. Skilled in HTML, CSS, JavaScript, PHP,
+        Python, Java, MySQL, MongoDB, and Power BI. Passionate about building SaaS products that merge
+        functionality with user experience and innovation.
+      </p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <p><strong>B.Tech in Computer Science and Engineering</strong><br>
+      Achariya College of Engineering and Technology, Puducherry — Completed in 2025<br>
+      CGPA: 7.86</p>
+    </section>
+
+    <section>
+      <h2>Internship Experience</h2>
+      <p><strong>Web Development Intern — Ignite (6 Months)</strong></p>
+      <ul>
+        <li>Developed web applications and SaaS products using PHP.</li>
+        <li>Maintained responsive UI for client projects.</li>
+        <li>Optimized backend logic and performance.</li>
+      </ul>
+
+      <p><strong>Manufacturing Intern — Lenovo (10 Days)</strong></p>
+      <ul>
+        <li>Assisted in computer system manufacturing and assembly.</li>
+        <li>Handled raw material dispatch, testing, and labeling.</li>
+        <li>Ensured quality verification and final packaging.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>AI–Enhanced Traffic Lights</strong> — Real-time traffic management using sensor-based AI.</li>
+        <li><strong>Smart Trolley System</strong> — Automated billing using Arduino and sensors.</li>
+        <li><strong>Personal Portfolio Website</strong> — Built with HTML, CSS, and JavaScript to showcase skills and certificates.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <ul>
+        <li>Languages: HTML, CSS, JavaScript, Python, Java</li>
+        <li>Databases: MySQL, MongoDB</li>
+        <li>Tools: Power BI, PHP, GitHub</li>
+        <li>Core Areas: Web Development, Software Design, Data Analytics, SaaS Product Development</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Certifications & Achievements</h2>
+      <ul>
+        <li>Full Stack Development — Udemy</li>
+        <li>Web Development — Frontend & Backend specialization (Udemy)</li>
+        <li>Data Analytics with AWS — Hands-on training</li>
+        <li>Power BI — Microsoft Certified</li>
+        <li>Best Presentation Award — AI–Enhanced Traffic Lights Project</li>
+      </ul>
+    </section>
+
+    <footer>
+      © <?php echo date('Y'); ?> Vijay Anand | Designed with 💻 PHP & HTML
+    </footer>
+  </div>
+</body>
+</html>

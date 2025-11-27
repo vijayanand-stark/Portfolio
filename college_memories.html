@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Memories</title>
+  <link rel="icon" type="image/png" href="img/head logo/favicon.png">
+
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: rgba(255, 255, 255, 0.9);
+      --accent: #f1d36b;
+      --muted: #94a3b8;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background-color: #000; /* instant black on reload */
+      background-image: url("img/Background/counters-bg.webp");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #fff;
+      padding: 40px 20px;
+      transition: background-image 0.8s ease-in-out; /* smooth fade */
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 1000;
+    }
+
+    .back-btn:hover {
+      background-color: #0056b3;
+      transform: translateX(-3px);
+    }
+
+    /* Header section */
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    /* College image section */
+    .college-section {
+      max-width: 1000px;
+      margin: 0 auto 60px auto;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .college-section img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .college-content {
+      padding: 25px 30px;
+      text-align: left;
+    }
+
+    .college-content h2 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .college-content p {
+      color: #d1d5db;
+      line-height: 1.8;
+      font-size: 1rem;
+      margin: 0;
+      text-align: justify;
+    }
+
+    /* Grid section */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #000;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(241,211,107,0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #333;
+      margin-top: 8px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: rgba(20, 25, 40, 0.95);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .modal-content h2 {
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .modal-content p {
+      color: #ddd;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.2);
+      color: #f7e78b;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,215,0,0.3);
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html#blog" class="back-btn">← Back to Home</a>
+
+  <header>
+    <h1>College Memories</h1>
+    <p>A collection of unforgettable moments and achievements during my college life.</p>
+  </header>
+
+  <!-- 🏫 College Section -->
+  <section class="college-section">
+    <img src="img/college memories/Head image.webp" alt="College Campus Image">
+    <div class="college-content">
+      <h2>Achariya College of Engineering and Technology</h2>
+      <p>
+        My journey at Achariya College of Engineering and Technology has been one of growth, learning, and discovery.
+        It is where I transformed from a curious learner into a confident engineer, gaining not just technical knowledge
+        but also the discipline, teamwork, and creativity to apply it effectively. From academic milestones and innovative
+        projects to cultural events and friendships that will last a lifetime, every experience at Achariya has played a
+        vital role in shaping my personality, confidence, and passion for technology.
+      </p>
+    </div>
+  </section>
+
+  <!-- 🎓 Event Cards -->
+  <main class="grid">
+    <!-- Card 1 -->
+    <div class="card" data-id="1">
+      <img src="img/college memories/Untitled design.png" alt="Class Memories">
+      <div class="card-content">
+        <h3>Class Memories – Batch 2021–2025</h3>
+        <p>A memorable classroom moment with my batchmates and mentor at ACET.</p>
+      </div>
+    </div>
+
+    <!-- 🏛️ Field Trip to Arikamedu -->
+    <div class="card" data-id="2">
+      <img src="img/college memories/card_2.webp" alt="Field Trip to Arikamedu">
+      <div class="card-content">
+        <h3>Field Trip to Arikamedu, Puducherry</h3>
+        <p>A one-day educational trip exploring the ancient Indo-Roman archaeological site with classmates.</p>
+      </div>
+    </div>
+    <!-- 🚌 Field Trip to Chennai -->
+    <div class="card" data-id="3">
+      <img src="img/college memories/card_3.webp" alt="Field Trip to Chennai">
+      <div class="card-content">
+      <h3>Field Trip to Chennai – Periyar Science and Technology Centre</h3>
+      <p>An educational visit exploring science, technology, and innovation with faculty and friends.</p>
+    </div>
+    </div>
+<!-- 🧠 AI Conference – Best Participation Award -->
+<div class="card" data-id="8">
+  <img src="img/college memories/card_4.webp" alt="AI Conference Award">
+  <div class="card-content">
+    <h3>AI Conference – Best Participation Award</h3>
+    <p>Presented a research paper titled “AI–Enhanced Traffic Light: A Real-Time Solution for Urban Traffic Challenges” and received the Best Participation Award.</p>
+  </div>
+</div>
+
+<!-- Industrial Visit to Kalloor Electronics & Lighting Pvt. Ltd. (KELL) -->
+<div class="card" data-id="5">
+<img src="img/college memories/card_5.webp" alt="Industrial Visit to KELL">
+<div class="card-content">
+<h3>Industrial Visit – Kalloor Electronics & Lighting Pvt. Ltd. (KELL)</h3>
+<p>Visited KELL as part of an academic industrial tour and gained hands-on exposure to lighting technology, PCB workflows, and electronic manufacturing processes.</p>
+</div>
+</div>
+
+<!-- 🏆 SANGAMAM–2K25: Farewell, Sports & Cultural Fest -->
+<div class="card" data-id="6">
+  <img src="img/college memories/card_6.webp" alt="SANGAMAM 2K25 Event">
+  <div class="card-content">
+    <h3>SANGAMAM–2K25: Farewell, Sports & Cultural Fest</h3>
+    <p>Coordinated the sports events and received the Best Coordinator award for outstanding teamwork and organization.</p>
+  </div>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop">
+    <div class="modal">
+      <button class="close-btn" id="closeModal">✕</button>
+      <img id="modalImage" src="" alt="Event Image">
+      <div class="modal-content">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const events = [
+      {
+        id: 1,
+        title: "Class Memories – Batch 2021–2025",
+        img: "img/college memories/Card_1.webp",
+        desc: "A memorable classroom photograph with my batchmates and mentor at Achariya College of Engineering and Technology. These four years were filled with teamwork, laughter, and learning — from late-night project discussions to unforgettable college events. This picture captures the unity, friendship, and growth that made my journey at ACET truly special."
+      },
+      {
+        id: 2,
+        title: "Field Trip to Arikamedu, Puducherry",
+        img: "img/college memories/card_2.webp",
+        desc: "Our one-day educational field trip to Arikamedu, Puducherry, was a memorable journey filled with learning and exploration. We visited the ancient Indo-Roman archaeological site known for its historical trade connections and artifacts. The trip offered valuable insights into heritage, culture, and the significance of archaeology in understanding early civilization. It was a day of fun, friendship, and knowledge that strengthened our bond as a class."
+      },
+      {
+        id: 3,
+        title: "Field Trip to Chennai – Periyar Science and Technology Centre",
+        img: "img/college memories/card_3.webp",
+        desc: "Our educational field trip to the Periyar Science and Technology Centre in Chennai was an inspiring experience filled with knowledge and curiosity. We explored fascinating science exhibits, technological demonstrations, and innovative experiments that deepened our understanding of modern advancements. Guided by our faculty, we engaged in interactive sessions and observed real-world applications of engineering concepts. It was a memorable trip that combined learning with fun and strengthened our passion for technology."
+      },
+
+     {
+  id: 8,
+  title: "AI Conference – Best Participation Award",
+  img: "img/college memories/card_4.webp",
+  desc: "Represented Achariya College of Engineering and Technology at an international conference on Artificial Intelligence. Presented my research paper titled 'AI–Enhanced Traffic Light: A Real-Time Solution for Urban Traffic Challenges'. The project received appreciation for its innovation and practical implementation, earning me the 'Best Participation Award'. It was a proud moment reflecting my dedication and passion for applying AI in real-world challenges."
+},
+     {
+  id: 5,
+  title: "Industrial Visit – Kalloor Electronics & Lighting Pvt. Ltd. (KELL)",
+  img: "img/college memories/card_5.webp",
+  desc: "Visited KELL as part of an academic industrial tour and gained hands-on exposure to lighting technologies, PCB workflows, and electronic manufacturing processes."
+},
+{
+  id: 6,
+  title: "SANGAMAM–2K25: Farewell, Sports & Cultural Fest",
+  img: "img/college memories/card_6.webp",
+  desc: "SANGAMAM–2K25 was one of the most vibrant college events, bringing together farewell, sports, and cultural celebrations at Achariya College of Engineering and Technology. I had the privilege of coordinating the sports activities, ensuring smooth organization, fair competition, and enthusiastic participation. It was an incredible experience working with my team and peers, and I was honored to receive the 'Best Coordinator' award for my contribution to the successful management of the event."
+},
+
+    ];
+
+    const backdrop = document.getElementById("backdrop");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        const id = +card.dataset.id;
+        const event = events.find(e => e.id === id);
+        modalImage.src = event.img;
+        modalTitle.textContent = event.title;
+        modalDesc.textContent = event.desc;
+        backdrop.style.display = "flex";
+      });
+    });
+
+    closeModal.addEventListener("click", () => backdrop.style.display = "none");
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) backdrop.style.display = "none";
+    });
+  </script>
+</body>
+</html>
